@@ -18,13 +18,17 @@ export const useNumberTouch = () => {
 
   // タップ判定：終わったら true を返す
   const handleTouch = (n: number) => {
-    if (n === nextNumber.value) {
-      nextNumber.value++
-      if (nextNumber.value > GAME_SETTINGS.INTERVENTION_MAX) {
-        touchSpeedMs.value = Date.now() - startTime.value
-        return true // 終了合図
-      }
+    if (n !== nextNumber.value) return false // そもそも違う数字なら何もしない
+
+    // ★「今押したのが最大値か？」を先に判定する
+    if (n === GAME_SETTINGS.INTERVENTION_MAX) {
+      touchSpeedMs.value = Date.now() - startTime.value
+      // ここで nextNumber を増やさずに終わることで、画面が「17」にならない！
+      return true 
     }
+
+    // 最大値じゃない時だけ、次へ進める
+    nextNumber.value++
     return false
   }
 

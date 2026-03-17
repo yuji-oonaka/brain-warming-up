@@ -21,7 +21,7 @@ const onTouch = (n: number) => {
   <div class="text-center space-y-6">
     <div class="bg-blue-900/50 p-4 rounded-2xl inline-block border-2 border-blue-400">
       <p class="text-2xl font-bold text-blue-200">
-        次は <span class="text-5xl text-yellow-400">{{ nextNumber }}</span> を押してにゃ！
+        次は <span class="text-5xl text-yellow-400">{{ nextNumber > 16 ? 16 : nextNumber }}</span> を押してにゃ！
       </p>
     </div>
 
